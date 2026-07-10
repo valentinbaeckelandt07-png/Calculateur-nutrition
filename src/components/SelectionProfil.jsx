@@ -30,7 +30,7 @@ function SelectionProfil({ onChoisirProfil }) {
         <button
           type="button"
           onClick={() => onChoisirProfil("grand-public")}
-          className="group relative overflow-hidden rounded-[2rem] border border-slate-200 bg-white p-8 text-left shadow-xl transition duration-300 hover:-translate-y-1 hover:border-blue-300 hover:shadow-2xl"
+          className="group relative overflow-hidden rounded-[2rem] border border-slate-200 bg-white p-8 text-left shadow-xl transition duration-300 hover:-1 hover:border-blue-300 hover:shadow-2xl"
         >
           <div className="absolute -right-16 -top-16 h-48 w-48 rounded-full bg-blue-100/70 blur-3xl" />
 
@@ -72,7 +72,7 @@ function SelectionProfil({ onChoisirProfil }) {
         <button
           type="button"
           onClick={() => onChoisirProfil("football")}
-          className="group relative overflow-hidden rounded-[2rem] border border-lime-200 bg-white p-8 text-left shadow-xl transition duration-300 hover:-translate-y-1 hover:border-lime-400 hover:shadow-2xl"
+          className="group relative overflow-hidden rounded-[2rem] border border-lime-200 bg-white p-8 text-left shadow-xl transition duration-300 hover:-1 hover:border-lime-400 hover:shadow-2xl"
         >
           <div className="absolute -right-16 -top-16 h-48 w-48 rounded-full bg-lime-100/80 blur-3xl" />
 

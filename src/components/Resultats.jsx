@@ -68,7 +68,7 @@ function CarteResultat({
 
   return (
     <div
-      className={`rounded-2xl border p-5 transition hover:-translate-y-1 hover:shadow-md ${styles[couleur]}`}
+      className={`rounded-2xl border p-5 transition hover:-1 hover:shadow-md ${styles[couleur]}`}
     >
       <div className="flex items-center gap-2 text-sm font-semibold">
         <Icone size={20} />
