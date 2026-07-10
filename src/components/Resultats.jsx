@@ -8,8 +8,8 @@ import {
 
 function Resultats({ resultats }) {
   return (
-    <div className="bg-white/90 backdrop-blur rounded-3xl shadow-xl p-6 border border-white">
-      <h2 className="flex items-center gap-2 text-xl font-bold mb-6 text-slate-800">
+    <div className="rounded-3xl border border-white bg-white/90 p-6 shadow-xl backdrop-blur">
+      <h2 className="mb-6 flex items-center gap-2 text-xl font-bold text-slate-800">
         <ChartColumn size={24} className="text-blue-600" />
         Résultats
       </h2>
@@ -53,7 +53,12 @@ function Resultats({ resultats }) {
   );
 }
 
-function CarteResultat({ icone: Icone, titre, valeur, couleur }) {
+function CarteResultat({
+  icone: Icone,
+  titre,
+  valeur,
+  couleur,
+}) {
   const styles = {
     orange: "bg-orange-50 border-orange-200 text-orange-700",
     blue: "bg-blue-50 border-blue-200 text-blue-700",

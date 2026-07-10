@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { UserRound } from "lucide-react";
 
-function Formulaire({ onCalculer }) {
+function Formulaire({ onCalculer, onReinitialiser }) {
   const [formulaire, setFormulaire] = useState({
     sexe: "Homme",
     age: "",
@@ -26,12 +26,19 @@ function Formulaire({ onCalculer }) {
       poids: "",
       activite: "",
       objectif: "",
-    });
+    });onReinitialiser();
   }
+const age = Number(formulaire.age);
+const taille = Number(formulaire.taille);
+const poids = Number(formulaire.poids);
+
 const formulaireValide =
-  formulaire.age &&
-  formulaire.taille &&
-  formulaire.poids &&
+  age >= 10 &&
+  age <= 100 &&
+  taille >= 1.2 &&
+  taille <= 2.3 &&
+  poids >= 30 &&
+  poids <= 250 &&
   formulaire.activite &&
   formulaire.objectif;
   return (
