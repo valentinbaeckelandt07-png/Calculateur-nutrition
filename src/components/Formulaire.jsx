@@ -42,7 +42,7 @@ const formulaireValide =
   formulaire.activite &&
   formulaire.objectif;
   return (
-    <div className="bg-white/90 backdrop-blur rounded-3xl shadow-xl p-6 border border-white">
+    <div className="bg-white/90 rounded-3xl shadow-xl p-6 border border-white">
       <h2 className="flex items-center gap-2 text-xl font-bold mb-6 text-slate-800">
         <UserRound size={24} className="text-blue-600" />
         Informations

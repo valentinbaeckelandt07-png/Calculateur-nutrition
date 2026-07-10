@@ -8,7 +8,7 @@ import {
 
 function Resultats({ resultats }) {
   return (
-    <div className="rounded-3xl border border-white bg-white/90 p-6 shadow-xl backdrop-blur">
+    <div className="rounded-3xl border border-white bg-white/90 p-6 shadow-xl">
       <h2 className="mb-6 flex items-center gap-2 text-xl font-bold text-slate-800">
         <ChartColumn size={24} className="text-blue-600" />
         Résultats
