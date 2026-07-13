@@ -1,4 +1,4 @@
-function LogoNutriCalc({
+function({
   version = "grand-public",
   avecTexte = true,
   taille = 260,
@@ -7,11 +7,7 @@ function LogoNutriCalc({
 
   const source = avecTexte
     ? football
-      ? "/logo-nutricalc-football.svg"
-      : "/logo-nutricalc.svg"
     : football
-      ? "/icone-nutricalc-football.svg"
-      : "/icone-nutricalc.svg";
 
   return (
     <img
@@ -25,5 +21,3 @@ function LogoNutriCalc({
     />
   );
 }
-
-export default LogoNutriCalc;
