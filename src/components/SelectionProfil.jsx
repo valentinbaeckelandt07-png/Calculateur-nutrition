@@ -45,7 +45,7 @@ function SelectionProfil({ onChoisirProfil }) {
             </div>
 
             <h3 className="mt-3 text-3xl font-black text-slate-900">
-              Nutri<span className="text-green-600">Calc</span>
+              Alim<span className="text-green-600">Elys</span>
             </h3>
 
             <p className="mt-2 text-lg font-semibold text-slate-700">
@@ -87,7 +87,7 @@ function SelectionProfil({ onChoisirProfil }) {
             </div>
 
             <h3 className="mt-3 text-3xl font-black text-slate-900">
-              Nutri<span className="text-green-600">Calc</span> Football
+              Alim<span className="text-green-600">Elys</span> Football
             </h3>
 
             <p className="mt-2 text-lg font-semibold text-slate-700">
