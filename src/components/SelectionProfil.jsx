@@ -16,7 +16,7 @@ function SelectionProfil({ onChoisirProfil }) {
         </div>
 
         <h2 className="text-4xl font-black tracking-tight text-slate-900 sm:text-5xl">
-          Bienvenue sur NutriCalc
+          Bienvenue sur Alimelys
         </h2>
 
         <p className="mx-auto mt-4 max-w-2xl text-lg leading-8 text-slate-600">

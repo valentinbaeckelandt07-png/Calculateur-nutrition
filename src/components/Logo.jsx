@@ -1,21 +1,18 @@
 function Logo({
   version = "grand-public",
-  largeur = 320,
+  largeur = 125,
   className = "",
 }) {
-  const source =
-    version === "football"
-      ? "/brand/logo-nutricalc-football.png"
-      : "/brand/logo-nutricalc.png";
+  const football = version === "football";
+
+  const source = football
+    ? "/brand/logo-alimelys-football.png"
+    : "/brand/logo-alimelys.png";
 
   return (
     <img
       src={source}
-      alt={
-        version === "football"
-          ? "NutriCalc Football"
-          : "NutriCalc"
-      }
+      alt={football ? "Alimelys Football" : "Alimelys"}
       style={{ width: largeur }}
       className={`block h-auto max-w-full ${className}`}
     />

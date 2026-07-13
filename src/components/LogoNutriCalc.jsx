@@ -16,7 +16,7 @@ function LogoNutriCalc({
   return (
     <img
       src={source}
-      alt={football ? "NutriCalc Football" : "NutriCalc"}
+      alt={football ? "Alimelys Football" : "Alimelys"}
       style={{
         width: avecTexte ? taille : Math.min(taille, 100),
         height: "auto",

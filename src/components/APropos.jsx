@@ -11,11 +11,11 @@ function APropos() {
           </p>
 
           <h2 className="text-3xl font-black">
-            À propos de NutriCalc
+            À propos d'Alimelys
           </h2>
 
           <p className="mt-4 leading-relaxed text-slate-300">
-            NutriCalc est un calculateur nutritionnel réalisé par Valentin Baeckelandt, stagiaire diététicien.
+            Alimelys est un calculateur nutritionnel réalisé par Valentin Baeckelandt, stagiaire diététicien.
           </p>
 
           <p className="mt-4 leading-relaxed text-slate-300">
@@ -27,7 +27,7 @@ function APropos() {
 
         <div className="rounded-2xl bg-white/10 p-6">
           <h3 className="text-lg font-extrabold">
-            Les objectifs de NutriCalc
+            Les objectifs d'Alimelys
           </h3>
 
           <ul className="mt-4 space-y-3 text-slate-200">

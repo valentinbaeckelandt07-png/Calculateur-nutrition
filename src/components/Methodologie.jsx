@@ -16,7 +16,7 @@ function Methodologie({ profil }) {
         </h2>
 
         <p className="mx-auto mt-3 max-w-3xl leading-relaxed text-slate-600">
-          NutriCalc estime les besoins énergétiques quotidiens à partir des
+          Alimelys estime les besoins énergétiques quotidiens à partir des
           informations renseignées, puis adapte la répartition des
           macronutriments au profil sélectionné.
         </p>
@@ -136,7 +136,7 @@ function Methodologie({ profil }) {
           </p>
 
           <p className="mt-3 leading-relaxed text-slate-600">
-            Les fourchettes proposées par NutriCalc constituent donc une base à
+            Les fourchettes proposées par Alimelys constituent donc une base à
             adapter au calendrier sportif, à la récupération, aux sensations
             du joueur et à l’évolution de ses performances.
           </p>
@@ -152,7 +152,7 @@ function Methodologie({ profil }) {
           </h3>
 
           <p className="leading-relaxed text-slate-600">
-            NutriCalc présente des fourchettes plutôt que des valeurs strictes
+            Alimelys présente des fourchettes plutôt que des valeurs strictes
             afin de tenir compte des différences entre les individus.
           </p>
 

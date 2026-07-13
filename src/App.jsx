@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { Analytics } from "@vercel/analytics/react";
 
 import Header from "./components/Header";
 import SelectionProfil from "./components/SelectionProfil";
@@ -117,10 +118,11 @@ function App() {
       <APropos />
 
       <p className="mx-auto mb-8 max-w-5xl text-center text-sm leading-relaxed text-slate-500">
-        NutriCalc fournit des estimations indicatives. Les résultats doivent
+        Alimelys fournit des estimations indicatives. Les résultats doivent
         être adaptés au contexte individuel et ne remplacent pas un suivi
         personnalisé par un diététicien.
       </p>
+      <Analytics />
     </main>
   );
 }
