@@ -178,3 +178,44 @@ export function calculerGlucides(
     max: Math.max(0, Math.round(glucidesMax)),
   };
 }
+export function calculerHydratation(
+  besoinsEnergetiques,
+  profil
+) {
+  const energie = Number(besoinsEnergetiques);
+
+  if (!Number.isFinite(energie) || energie <= 0) {
+    return null;
+  }
+
+  const arrondirLitre = (millilitres) =>
+    Math.round((millilitres / 1000) * 10) / 10;
+
+  // Repère de base : 1 mL d’eau par kcal.
+  const eauTotaleMl = energie;
+
+  // Environ 75 % de l’eau quotidienne provient des boissons.
+  const boissonsBaseMl = eauTotaleMl * 0.75;
+
+  if (profil === "football") {
+    return {
+      type: "football",
+
+      jourReposL: arrondirLitre(boissonsBaseMl),
+
+      uneSeanceL: arrondirLitre(
+        boissonsBaseMl + 1000
+      ),
+
+      deuxSeancesL: arrondirLitre(
+        boissonsBaseMl + 2000
+      ),
+    };
+  }
+
+  return {
+    type: "grand-public",
+    eauTotaleL: arrondirLitre(eauTotaleMl),
+    boissonsL: arrondirLitre(boissonsBaseMl),
+  };
+}

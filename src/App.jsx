@@ -7,12 +7,14 @@ import Formulaire from "./components/Formulaire";
 import Resultats from "./components/Resultats";
 import Methodologie from "./components/Methodologie";
 import APropos from "./components/APropos";
+import FAQ from "./components/FAQ";
 
 import {
   calculerBesoinsEnergetiques,
   calculerProteines,
   calculerLipides,
   calculerGlucides,
+  calculerHydratation,
 } from "./utils/calculs";
 
 function App() {
@@ -20,32 +22,38 @@ function App() {
   const [resultats, setResultats] = useState(null);
 
   function calculer(formulaire) {
-    const besoinsEnergetiques =
-      calculerBesoinsEnergetiques(formulaire);
+  const besoinsEnergetiques =
+    calculerBesoinsEnergetiques(formulaire);
 
-    const proteines = calculerProteines(
-      formulaire,
-      profil
-    );
+  const proteines = calculerProteines(
+    formulaire,
+    profil
+  );
 
-    const lipides = calculerLipides(
-      besoinsEnergetiques,
-      profil
-    );
+  const lipides = calculerLipides(
+    besoinsEnergetiques,
+    profil
+  );
 
-    const glucides = calculerGlucides(
-      besoinsEnergetiques,
-      proteines,
-      lipides
-    );
+  const glucides = calculerGlucides(
+    besoinsEnergetiques,
+    proteines,
+    lipides
+  );
 
-    setResultats({
-      besoinsEnergetiques,
-      proteines,
-      lipides,
-      glucides,
-    });
-  }
+  const hydratation = calculerHydratation(
+    besoinsEnergetiques,
+    profil
+  );
+
+  setResultats({
+    besoinsEnergetiques,
+    proteines,
+    lipides,
+    glucides,
+    hydratation,
+  });
+}
 
   function choisirProfil(nouveauProfil) {
     setProfil(nouveauProfil);
@@ -116,7 +124,7 @@ function App() {
       )}
 
       <APropos />
-
+<FAQ />
       <p className="mx-auto mb-8 max-w-5xl text-center text-sm leading-relaxed text-slate-500">
         Alimelys fournit des estimations indicatives. Les résultats doivent
         être adaptés au contexte individuel et ne remplacent pas un suivi
