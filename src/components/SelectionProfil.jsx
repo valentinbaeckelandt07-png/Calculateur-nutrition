@@ -15,8 +15,9 @@ function SelectionProfil({ onChoisirProfil }) {
           Votre nutrition, adaptée à votre profil
         </div>
 
-        <h2 className="text-4xl font-black tracking-tight text-slate-900 sm:text-5xl">
-          Bienvenue sur Alimelys
+        <h2 className="text-3xl font-semibold leading-tight tracking-tight text-[#123A67] md:text-4xl"
+  style={{ fontFamily: '"Manrope", sans-serif' }}>
+          Bienvenue sur Alimelys, calculateur de besoin énergétique et en macronutriments
         </h2>
 
         <p className="mx-auto mt-4 max-w-2xl text-lg leading-8 text-slate-600">
