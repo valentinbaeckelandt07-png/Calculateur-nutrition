@@ -4,7 +4,7 @@ function Methodologie({ profil }) {
   return (
     <section
       id="methodologie"
-      className="mx-auto mt-12 max-w-5xl scroll-mt-8 rounded-3xl border border-slate-200 bg-white p-6 shadow-lg md:p-10"
+      className="mx-auto mt-12 max-w-5xl scroll-mt-40 rounded-3xl border border-slate-200 bg-white p-6 shadow-lg md:p-10"
     >
       <div className="mb-8 text-center">
         <p className="mb-2 text-sm font-bold uppercase tracking-widest text-blue-600">

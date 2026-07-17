@@ -2,7 +2,7 @@ function APropos() {
   return (
     <section
       id="a-propos"
-      className="mx-auto my-12 max-w-5xl scroll-mt-8 rounded-3xl bg-slate-900 p-6 text-white shadow-xl md:p-10"
+      className="mx-auto my-12 max-w-5xl scroll-mt-40 rounded-3xl bg-slate-900 p-6 text-white shadow-xl md:p-10"
     >
       <div className="grid items-center gap-8 md:grid-cols-2">
         <div>
