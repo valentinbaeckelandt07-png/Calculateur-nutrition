@@ -8,6 +8,7 @@ import Resultats from "./components/Resultats";
 import Methodologie from "./components/Methodologie";
 import APropos from "./components/APropos";
 import FAQ from "./components/FAQ";
+import HydratationFootballAvancee from "./components/HydratationFootballAvancee";
 
 import {
   calculerBesoinsEnergetiques,
@@ -17,55 +18,112 @@ import {
   calculerHydratation,
 } from "./utils/calculs";
 
+const HYDRATATION_FOOTBALL_INITIALE = {
+  personnalisee: false,
+  tauxSudation: "",
+  dureeSeance: "",
+};
+
 function App() {
   const [profil, setProfil] = useState(null);
   const [resultats, setResultats] = useState(null);
 
+  const [
+    hydratationFootball,
+    setHydratationFootball,
+  ] = useState(HYDRATATION_FOOTBALL_INITIALE);
+
   function calculer(formulaire) {
-  const besoinsEnergetiques =
-    calculerBesoinsEnergetiques(formulaire);
+    if (
+      profil === "football" &&
+      hydratationFootball.personnalisee
+    ) {
+      const tauxSudation = Number(
+        String(
+          hydratationFootball.tauxSudation
+        ).replace(",", ".")
+      );
 
-  const proteines = calculerProteines(
-    formulaire,
-    profil
-  );
+      const dureeSeance = Number(
+        String(
+          hydratationFootball.dureeSeance
+        ).replace(",", ".")
+      );
 
-  const lipides = calculerLipides(
-    besoinsEnergetiques,
-    profil
-  );
+      if (
+        !Number.isFinite(tauxSudation) ||
+        tauxSudation <= 0 ||
+        !Number.isFinite(dureeSeance) ||
+        dureeSeance <= 0
+      ) {
+        window.alert(
+          "Renseigne un taux de sudation et une durée de séance valides."
+        );
 
-  const glucides = calculerGlucides(
-    besoinsEnergetiques,
-    proteines,
-    lipides
-  );
+        return;
+      }
+    }
 
-  const hydratation = calculerHydratation(
-    besoinsEnergetiques,
-    profil
-  );
+    const besoinsEnergetiques =
+      calculerBesoinsEnergetiques(formulaire);
 
-  setResultats({
-    besoinsEnergetiques,
-    proteines,
-    lipides,
-    glucides,
-    hydratation,
-  });
-}
+    const proteines = calculerProteines(
+      formulaire,
+      profil
+    );
+
+    const lipides = calculerLipides(
+      besoinsEnergetiques,
+      profil
+    );
+
+    const glucides = calculerGlucides(
+      besoinsEnergetiques,
+      proteines,
+      lipides
+    );
+
+    const hydratation = calculerHydratation(
+      besoinsEnergetiques,
+      profil,
+      hydratationFootball
+    );
+
+    setResultats({
+      besoinsEnergetiques,
+      proteines,
+      lipides,
+      glucides,
+      hydratation,
+    });
+  }
 
   function choisirProfil(nouveauProfil) {
     setProfil(nouveauProfil);
     setResultats(null);
+
+    setHydratationFootball(
+      HYDRATATION_FOOTBALL_INITIALE
+    );
   }
 
   function changerProfil() {
     setProfil(null);
     setResultats(null);
+
+    setHydratationFootball(
+      HYDRATATION_FOOTBALL_INITIALE
+    );
   }
 
   function reinitialiserResultats() {
+    setResultats(null);
+  }
+
+  function modifierHydratationFootball(
+    nouveauxParametres
+  ) {
+    setHydratationFootball(nouveauxParametres);
     setResultats(null);
   }
 
@@ -106,12 +164,25 @@ function App() {
             </div>
 
             <div className="grid gap-6 lg:grid-cols-[420px_1fr]">
-              <Formulaire
-                onCalculer={calculer}
-                onReinitialiser={
-                  reinitialiserResultats
-                }
-              />
+              <div className="space-y-6">
+                <Formulaire
+                  onCalculer={calculer}
+                  onReinitialiser={
+                    reinitialiserResultats
+                  }
+                />
+
+                {profil === "football" && (
+                  <HydratationFootballAvancee
+                    parametres={
+                      hydratationFootball
+                    }
+                    onChange={
+                      modifierHydratationFootball
+                    }
+                  />
+                )}
+              </div>
 
               <Resultats resultats={resultats} />
             </div>
@@ -124,12 +195,15 @@ function App() {
       )}
 
       <APropos />
-<FAQ />
+
+      <FAQ />
+
       <p className="mx-auto mb-8 max-w-5xl text-center text-sm leading-relaxed text-slate-500">
         Alimelys fournit des estimations indicatives. Les résultats doivent
         être adaptés au contexte individuel et ne remplacent pas un suivi
         personnalisé par un diététicien.
       </p>
+
       <Analytics />
     </main>
   );

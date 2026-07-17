@@ -180,7 +180,8 @@ export function calculerGlucides(
 }
 export function calculerHydratation(
   besoinsEnergetiques,
-  profil
+  profil,
+  personnalisation = {}
 ) {
   const energie = Number(besoinsEnergetiques);
 
@@ -188,34 +189,71 @@ export function calculerHydratation(
     return null;
   }
 
-  const arrondirLitre = (millilitres) =>
-    Math.round((millilitres / 1000) * 10) / 10;
+  const arrondirLitre = (litres) =>
+    Math.round(litres * 10) / 10;
 
-  // Repère de base : 1 mL d’eau par kcal.
-  const eauTotaleMl = energie;
+  const convertirNombre = (valeur) =>
+    Number(String(valeur).replace(",", "."));
+
+  // Repère de base : 1 mL d’eau totale par kcal.
+  const eauTotaleL = energie / 1000;
 
   // Environ 75 % de l’eau quotidienne provient des boissons.
-  const boissonsBaseMl = eauTotaleMl * 0.75;
+  const boissonsBaseL = eauTotaleL * 0.75;
 
   if (profil === "football") {
+    const tauxSudation = convertirNombre(
+      personnalisation.tauxSudation
+    );
+
+    const dureeSeance = convertirNombre(
+      personnalisation.dureeSeance
+    );
+
+    const personnalisationValide =
+      personnalisation.personnalisee === true &&
+      Number.isFinite(tauxSudation) &&
+      tauxSudation > 0 &&
+      Number.isFinite(dureeSeance) &&
+      dureeSeance > 0;
+
+    // En l’absence de mesure réelle, repère générique de 1 L.
+    const perteSeanceL = personnalisationValide
+      ? tauxSudation * (dureeSeance / 60)
+      : 1;
+
     return {
       type: "football",
 
-      jourReposL: arrondirLitre(boissonsBaseMl),
+      mode: personnalisationValide
+        ? "personnalise"
+        : "generique",
+
+      jourReposL: arrondirLitre(boissonsBaseL),
 
       uneSeanceL: arrondirLitre(
-        boissonsBaseMl + 1000
+        boissonsBaseL + perteSeanceL
       ),
 
       deuxSeancesL: arrondirLitre(
-        boissonsBaseMl + 2000
+        boissonsBaseL + perteSeanceL * 2
       ),
+
+      perteSeanceL: arrondirLitre(perteSeanceL),
+
+      tauxSudationLh: personnalisationValide
+        ? arrondirLitre(tauxSudation)
+        : null,
+
+      dureeSeanceMin: personnalisationValide
+        ? Math.round(dureeSeance)
+        : null,
     };
   }
 
   return {
     type: "grand-public",
-    eauTotaleL: arrondirLitre(eauTotaleMl),
-    boissonsL: arrondirLitre(boissonsBaseMl),
+    eauTotaleL: arrondirLitre(eauTotaleL),
+    boissonsL: arrondirLitre(boissonsBaseL),
   };
 }

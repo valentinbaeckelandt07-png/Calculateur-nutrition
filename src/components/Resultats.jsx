@@ -81,12 +81,23 @@ function Resultats({ resultats }) {
 function CarteHydratationFootball({
   hydratation,
 }) {
+  const personnalise =
+    hydratation.mode === "personnalise";
+
   return (
     <div className="rounded-2xl border border-cyan-200 bg-cyan-50 p-5 text-cyan-800 transition hover:-translate-y-1 hover:shadow-md sm:col-span-2">
-      <div className="flex items-center gap-2 text-sm font-semibold">
-        <GlassWater size={20} />
+      <div className="flex flex-wrap items-center justify-between gap-3">
+        <div className="flex items-center gap-2 text-sm font-semibold">
+          <GlassWater size={20} />
 
-        <span>Repères hydriques quotidiens</span>
+          <span>Repères hydriques quotidiens</span>
+        </div>
+
+        <span className="rounded-full border border-cyan-200 bg-white px-3 py-1 text-xs font-bold text-cyan-700">
+          {personnalise
+            ? "Calcul personnalisé"
+            : "Estimation standard"}
+        </span>
       </div>
 
       <div className="mt-5 grid gap-3 sm:grid-cols-3">
@@ -106,13 +117,40 @@ function CarteHydratationFootball({
         />
       </div>
 
-      <p className="mt-4 text-sm leading-relaxed text-slate-600">
-        Ces valeurs sont des estimations. Le supplément
-        indicatif de 1 L par séance doit être adapté à la
-        durée et à l’intensité de l’effort, aux conditions
-        climatiques ainsi qu’aux pertes sudorales réelles du
-        joueur.
-      </p>
+      {personnalise ? (
+        <div className="mt-4 rounded-xl border border-cyan-200 bg-white/70 p-4">
+          <p className="text-sm font-semibold text-cyan-800">
+            Calcul basé sur un taux de sudation de{" "}
+            {hydratation.tauxSudationLh} L/h pendant{" "}
+            {hydratation.dureeSeanceMin} minutes.
+          </p>
+
+          <p className="mt-2 text-sm leading-relaxed text-slate-600">
+            Cela correspond à environ{" "}
+            <strong>
+              {hydratation.perteSeanceL} L
+            </strong>{" "}
+            de pertes sudorales par séance.
+          </p>
+        </div>
+      ) : (
+        <p className="mt-4 text-sm leading-relaxed text-slate-600">
+          Ces valeurs sont des estimations. Le supplément
+          indicatif de 1 L par séance doit être adapté à la
+          durée et à l’intensité de l’effort, aux conditions
+          climatiques ainsi qu’aux pertes sudorales réelles du
+          joueur.
+        </p>
+      )}
+
+      {personnalise && (
+        <p className="mt-4 text-sm leading-relaxed text-slate-600">
+          Ces repères restent estimatifs et doivent être
+          adaptés aux conditions climatiques, à l’intensité de
+          l’effort, à la tolérance digestive et aux
+          possibilités de boire.
+        </p>
+      )}
     </div>
   );
 }
