@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://calculateur-nutrition.vercel.app/sitemap.xml
+Sitemap: https://www.alimelys.fr/sitemap.xml
