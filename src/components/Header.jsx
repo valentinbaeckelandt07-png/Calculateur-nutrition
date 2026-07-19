@@ -7,10 +7,12 @@ function Header({
   onAfficherSources,
   onAfficherMethodologie,
   onAfficherAPropos,
+  onAfficherContact,
 }) {
   const football = profil === "football";
   const surAccueil = vueActive === "accueil";
   const surSources = vueActive === "sources";
+const surContact = vueActive === "contact";
 
   return (
     <header className="sticky top-3 z-50 mx-auto mb-8 mt-4 max-w-6xl rounded-3xl border border-slate-200 bg-white px-4 py-4 shadow-lg md:px-5 lg:px-6">
@@ -73,12 +75,16 @@ function Header({
           </button>
 
           <button
-            type="button"
-            onClick={onAfficherAPropos}
-            className="whitespace-nowrap rounded-xl px-2 py-2 transition hover:text-blue-600 lg:px-3"
-          >
-            À propos
-          </button>
+  type="button"
+  onClick={onAfficherContact}
+  className={`whitespace-nowrap rounded-xl px-2 py-2 transition lg:px-3 ${
+    surContact
+      ? "bg-blue-50 text-blue-700"
+      : "hover:text-blue-600"
+  }`}
+>
+  Contact
+</button>
         </nav>
 
         <div

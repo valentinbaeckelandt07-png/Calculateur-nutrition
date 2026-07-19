@@ -10,6 +10,7 @@ import APropos from "./components/APropos";
 import FAQ from "./components/FAQ";
 import HydratationFootballAvancee from "./components/HydratationFootballAvancee";
 import SourcesScientifiques from "./components/SourcesScientifiques";
+import Contact from "./components/Contact";
 
 import {
   calculerBesoinsEnergetiques,
@@ -159,7 +160,14 @@ function App() {
   function afficherAPropos() {
     faireDefilerVers("a-propos");
   }
+function afficherContact() {
+  setVueActive("contact");
 
+  window.scrollTo({
+    top: 0,
+    behavior: "smooth",
+  });
+}
   function afficherSources() {
     setVueActive("sources");
 
@@ -182,88 +190,91 @@ function App() {
         onAfficherAPropos={
           afficherAPropos
         }
+         onAfficherContact={
+    afficherContact
+  }
       />
 
       {vueActive === "sources" ? (
-        <SourcesScientifiques />
+  <SourcesScientifiques />
+) : vueActive === "contact" ? (
+  <Contact />
+) : (
+  <>
+    <section
+      id="calculateur"
+      className="scroll-mt-40"
+    >
+      {!profil ? (
+        <SelectionProfil
+          onChoisirProfil={choisirProfil}
+        />
       ) : (
-        <>
-          <section
-            id="calculateur"
-            className="scroll-mt-40"
-          >
-            {!profil ? (
-              <SelectionProfil
-                onChoisirProfil={choisirProfil}
+        <div className="mx-auto max-w-5xl">
+          <div className="mb-5 flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
+            <div>
+              <p className="text-sm font-semibold uppercase tracking-wide text-blue-600">
+                Version sélectionnée
+              </p>
+
+              <h2 className="text-2xl font-extrabold text-slate-800">
+                {profil === "grand-public"
+                  ? "Grand public"
+                  : "Football performance"}
+              </h2>
+            </div>
+
+            <button
+              type="button"
+              onClick={changerProfil}
+              className="rounded-xl border border-slate-300 bg-white px-4 py-2 font-semibold text-slate-700 transition hover:bg-slate-50"
+            >
+              Changer de profil
+            </button>
+          </div>
+
+          <div className="grid gap-6 lg:grid-cols-[420px_1fr]">
+            <div className="space-y-6">
+              <Formulaire
+                onCalculer={calculer}
+                onReinitialiser={
+                  reinitialiserResultats
+                }
               />
-            ) : (
-              <div className="mx-auto max-w-5xl">
-                <div className="mb-5 flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
-                  <div>
-                    <p className="text-sm font-semibold uppercase tracking-wide text-blue-600">
-                      Version sélectionnée
-                    </p>
 
-                    <h2 className="text-2xl font-extrabold text-slate-800">
-                      {profil === "grand-public"
-                        ? "Grand public"
-                        : "Football performance"}
-                    </h2>
-                  </div>
+              {profil === "football" && (
+                <HydratationFootballAvancee
+                  parametres={
+                    hydratationFootball
+                  }
+                  onChange={
+                    modifierHydratationFootball
+                  }
+                />
+              )}
+            </div>
 
-                  <button
-                    type="button"
-                    onClick={changerProfil}
-                    className="rounded-xl border border-slate-300 bg-white px-4 py-2 font-semibold text-slate-700 transition hover:bg-slate-50"
-                  >
-                    Changer de profil
-                  </button>
-                </div>
-
-                <div className="grid gap-6 lg:grid-cols-[420px_1fr]">
-                  <div className="space-y-6">
-                    <Formulaire
-                      onCalculer={calculer}
-                      onReinitialiser={
-                        reinitialiserResultats
-                      }
-                    />
-
-                    {profil === "football" && (
-                      <HydratationFootballAvancee
-                        parametres={
-                          hydratationFootball
-                        }
-                        onChange={
-                          modifierHydratationFootball
-                        }
-                      />
-                    )}
-                  </div>
-
-                  <Resultats
-                    resultats={resultats}
-                  />
-                </div>
-              </div>
-            )}
-          </section>
-
-          {profil && (
-            <Methodologie profil={profil} />
-          )}
-
-          <APropos />
-
-          <FAQ />
-
-          <p className="mx-auto mb-8 max-w-5xl text-center text-sm leading-relaxed text-slate-500">
-            Alimelys fournit des estimations indicatives. Les résultats doivent
-            être adaptés au contexte individuel et ne remplacent pas un suivi
-            personnalisé par un diététicien.
-          </p>
-        </>
+            <Resultats resultats={resultats} />
+          </div>
+        </div>
       )}
+    </section>
+
+    {profil && (
+      <Methodologie profil={profil} />
+    )}
+
+    <APropos />
+
+    <FAQ />
+
+    <p className="mx-auto mb-8 max-w-5xl text-center text-sm leading-relaxed text-slate-500">
+      Alimelys fournit des estimations indicatives. Les résultats doivent
+      être adaptés au contexte individuel et ne remplacent pas un suivi
+      personnalisé par un diététicien.
+    </p>
+  </>
+)}
 
       <Analytics />
     </main>
